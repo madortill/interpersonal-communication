@@ -26,10 +26,10 @@
   <style scoped>
     
     .background {
-        height: calc(var(--vh, 1vh) * 100);
+        height: 100vh;
         width: 100vw;
         /* background-image: url("@/assets/"); */
-        background-color: rgb(3, 190, 223);
+        background-color: rgb(3 190 223 / 67%);
         background-size: 100vw 100vh;
         background-repeat: no-repeat;
     }

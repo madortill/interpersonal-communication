@@ -1,30 +1,30 @@
 <template>
-    <div id="nav-bar">
-      <div class="open">
-      </div>
-    </div>
-  </template>
-  
-  <script>
-  
-    export default {
-      name: "nav-bar",
-      components: {
-        
-      },
-      data() {
-        return {
-          
-        }
-      },
-      methods: {
-        
-      }
+  <div id="nav-bar">
+    <ul>
+      <li v-for="(subject, index) in subjects" :key="index"> {{ subject }} </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+
+export default {
+  name: "nav-bar",
+  props: ["pageNum"],
+  data() {
+      return{
+        subjects: [""]
+      };
+  },
+  methods: {
+    changeScreen(page) {
+      this.$emit('change-page', page);
     }
-  </script>
+  },
+}
+</script>
   
-  <style scoped>
-    
+<style scoped>
   
-  </style>
-  
+
+</style>
