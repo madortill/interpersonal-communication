@@ -1,6 +1,6 @@
 <template>
   <background class="back"></background>
-  <main-content v-show="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen === 21)" :currScreen="currScreen" class="main-content"></main-content>
+  <main-content v-show="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)" :currPage="currScreen" class="main-content"></main-content>
   <img @click="currScreen++" class="arrow" src="@/assets/arrow-small-right.svg" alt="<--">
 </template>
 
@@ -16,7 +16,6 @@
     },
     data() {
       return {
-        subj: ["Algorithm", "Complex", "OrderOfMagnitude"],
             currSubj: 0,
             currScreen: 1,
       }

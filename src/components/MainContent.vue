@@ -65,7 +65,7 @@ import json from '@/data.json'
   }
 
   .titles {
-
+    font-weight: 600;
   }
 
 </style>
