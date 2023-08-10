@@ -29,25 +29,18 @@ import json from '@/data.json'
           let num = '';
           if (this.currPage === 4) {
             num = 0;
-            console.log("מהי תקשורת?");
           } else if (this.currPage === 5) {
             num = 1;
-            console.log("איזו תקשורת קיימת בהדרכה?");
           } else if (this.currPage >= 6 && this.currPage < 11) {
             num = 2;
-            console.log("מושגים בתקשורת");
           } else if (this.currPage === 12) {
             num = 3;
-            console.log("תקשורת קווית");
           } else if (this.currPage >= 13 && this.currPage < 15) {
             num = 4;
-            console.log("תקשורת מעגלית");
           } else if (this.currPage === 15) {
             num = 5;
-            console.log("תקשורת בהדרכה");
           } else if (this.currPage >= 16) {
             num = 6;
-            console.log("רעשים בתקשורת");
           }
           return num;
         }

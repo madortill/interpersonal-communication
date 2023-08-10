@@ -1,6 +1,6 @@
 <template>
-    <div id="exercise">
-      <div class="open">
+    <div id="complete-sentence">
+      <div>
       </div>
     </div>
   </template>
@@ -8,7 +8,7 @@
   <script>
   
     export default {
-      name: "exercise",
+      name: "complete-sentence",
       components: {
         
       },
@@ -27,4 +27,3 @@
     
   
   </style>
-  

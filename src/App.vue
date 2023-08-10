@@ -1,18 +1,24 @@
 <template>
   <background class="back"></background>
-  <main-content v-show="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)" :currPage="currScreen" class="main-content"></main-content>
+  <nav-bar v-if="currSubj === 1" :currPage="currScreen" @change-page="changePage" class="nav-bar"></nav-bar>
+  <main-content v-if="currSubj === 1" v-show="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)" :currPage="currScreen" class="main-content"></main-content>
+  <open-question class="open-question"></open-question>
   <img @click="currScreen++" class="arrow" src="@/assets/arrow-small-right.svg" alt="<--">
 </template>
 
 <script>
   import Background from './components/Background.vue';
+  import OpenQuestion from './components/OpenQuestion.vue';
   import MainContent from './components/MainContent.vue';
+  import NavBar from './components/NavBar.vue';
 
   export default {
     name: "app",
     components: {
       Background,
-      MainContent
+      MainContent,
+      NavBar,
+      OpenQuestion
     },
     data() {
       return {
@@ -21,7 +27,9 @@
       }
     },
     methods: {
-      
+      changePage(page) {
+        this.currScreen = page;
+      }
     }
     
   }
@@ -59,5 +67,16 @@
     bottom: 3rem;
     left: 3rem;
     rotate: 180deg;
+  }
+
+  .nav-bar {
+    position: absolute;
+    top: 27rem;
+    left: 15rem;
+  }
+
+  .open-question {
+    position: absolute;
+    
   }
 </style>
