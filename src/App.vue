@@ -77,6 +77,8 @@
 
   .open-question {
     position: absolute;
-    
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 </style>
