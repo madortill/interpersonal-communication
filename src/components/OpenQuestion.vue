@@ -79,6 +79,7 @@
     align-self: center;
     font-weight: 500;
     font-size: 0.6rem;
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
   .error-message {
@@ -89,7 +90,7 @@
 
   .question,
   .answer {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
 </style>
