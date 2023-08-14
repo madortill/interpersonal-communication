@@ -47,13 +47,13 @@
 
 <style scoped>
   .content-container {
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.589);
-      border-radius: 20%;
-      padding: 10%;
-      display: flex;
-      flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.589);
+    border-radius: 20%;
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
   }
 
   .question, 

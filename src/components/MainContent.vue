@@ -14,9 +14,6 @@ import json from '@/data.json'
 
   export default {
     name: "main-content",
-    components: {
-      
-    },
     props: ['currPage'],
     computed: {
         content() {

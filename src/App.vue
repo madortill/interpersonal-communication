@@ -2,15 +2,15 @@
   <background class="back"></background>
   <nav-bar v-if="currSubj === 1" :currPage="currScreen" @change-page="changePage" class="nav-bar"></nav-bar>
   <main-content v-if="currSubj === 1" v-show="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)" :currPage="currScreen" class="main-content"></main-content>
-  <open-question class="open-question"></open-question>
+  <exercise-manager class="open-question"></exercise-manager>
   <img @click="currScreen++" class="arrow" src="@/assets/arrow-small-right.svg" alt="<--">
 </template>
 
 <script>
   import Background from './components/Background.vue';
-  import OpenQuestion from './components/OpenQuestion.vue';
   import MainContent from './components/MainContent.vue';
   import NavBar from './components/NavBar.vue';
+  import ExerciseManager from './components/ExerciseManager.vue';
 
   export default {
     name: "app",
@@ -18,7 +18,7 @@
       Background,
       MainContent,
       NavBar,
-      OpenQuestion
+      ExerciseManager
     },
     data() {
       return {
