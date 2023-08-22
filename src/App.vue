@@ -1,9 +1,14 @@
 <template>
-  <background class="back"></background>
-  <nav-bar v-if="currSubj === 1" :currPage="currScreen" @change-page="changePage" class="nav-bar"></nav-bar>
-  <main-content v-if="currSubj === 1" v-show="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)" :currPage="currScreen" class="main-content"></main-content>
-  <exercise-manager class="open-question"></exercise-manager>
-  <img @click="currScreen++" class="arrow" src="@/assets/arrow-small-right.svg" alt="<--">
+  <div id="app">
+    <nav-bar v-if="currSubj === 1" :currPage="currScreen" @change-page="changePage" class="nav-bar"></nav-bar>
+    <main-content v-if="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)" 
+      :currPage="currScreen" class="main-content"></main-content>
+    <exercise-manager class="exercise-manager" v-if="(this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen === 21)" 
+    :currPage="currScreen" @next-page="currScreen++"></exercise-manager>
+  </div>
+  <background id="background"></background>
+  <img @click="currScreen++" class="arrow" src="@/assets/arrow-small-right.svg" alt="<--" 
+  v-if="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)">
 </template>
 
 <script>
@@ -49,15 +54,21 @@
     height: 100%;
   }
 
+  #app {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
   .main-content {
     width: 20rem;
     height: fit-content;
-    position: absolute;
-    z-index: 5;
-    top: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
-
+    position: relative;
+    top: -2rem;
   }
 
   .arrow {
@@ -75,10 +86,16 @@
     left: 15rem;
   }
 
-  .open-question {
+  #background {
     position: absolute;
-    top: 5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    z-index: -1;
+  }
+
+  .exercise-manager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -2rem;
   }
 </style>
