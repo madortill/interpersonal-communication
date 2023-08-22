@@ -8,7 +8,7 @@
   </div>
   <background id="background"></background>
   <img @click="currScreen++" class="arrow" src="@/assets/arrow-small-right.svg" alt="<--" 
-  v-if="!(this.currScreen === 1 || this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)">
+  v-if="!(this.currScreen === 11 || this.currScreen === 16 || this.currScreen === 19 || this.currScreen >= 21)">
 </template>
 
 <script>

@@ -5,14 +5,14 @@
       <path :id="`path${index - 1}`" v-for="index in termsNum" :key="colorsArr[index - 1]" :stroke="colorsArr[index - 1]" stroke-width="0.5%" fill="none" :d="paths[index - 1]"></path>
     </svg>
     <div v-for="(string, keyName, index) in terms" :key="keyName" class="ignore">
-      <div :class="['term', chosenTermIndex === index ? 'chosen' : '' ]" :style="`grid-column: ${index + 1} / ${index + 2}`" 
-      @click="chosenTermIndex === index ? chosenTermIndex = -1 : chosenTermIndex = index"> {{ string }} </div>
-      <div :class="['definition', chosenDefinitionIndex === index ? 'chosen' : '' ]" :id="`input${index}`" :style="`grid-column: ${index + 1} / ${index + 2}`" 
-      @click="chosenDefinitionIndex === index ? chosenDefinitionIndex = -1 : chosenDefinitionIndex = index"> {{ Object.values(definitions)[index] }} </div>
+      <div :class="['term', chosenTermKey === keyName ? 'chosen' : '', failedAnimation && chosenTermKey === keyName ? 'failed' : '']" :style="`grid-column: ${index + 1} / ${index + 2}`" 
+      @click="chosenItem('term', keyName, index)"> {{ string }} </div>
+      <div :class="['definition', chosenDefinitionKey === Object.keys(definitions)[index] ? 'chosen' : '', failedAnimation && chosenDefinitionKey === Object.keys(definitions)[index] ? 'failed' : '']" 
+      :id="`input${index}`" :style="`grid-column: ${index + 1} / ${index + 2}`" @click="chosenItem('definition', Object.keys(definitions)[index], index)"> {{ Object.values(definitions)[index] }} </div>
     </div>
   </div>
-  <span v-if="showEmpty && !checked" class="error-message">נראה שלא בחרת מושג והגדרה...</span>
   <button @click="checkConnection" class="connect">חבר</button>
+  <span v-show="showEmpty" class="error-message">נראה שלא בחרת מושג והגדרה...</span>
 </template>
 
 <script>
@@ -26,10 +26,14 @@
         terms: {},
         definitions: {},
         chosenTermIndex: -1,
+        chosenTermKey: -1,
         chosenDefinitionIndex: -1,
+        chosenDefinitionKey: -1,
         termsNum: this.ques.term.length,
         colorsArr: ["#FFC0CB", "#03e3fc", "#d1043b", "#d16004", "#f57802", "#000000"],
         paths: [],
+        showEmpty: false,
+        failedAnimation: false,
       }
     },
     mounted() {
@@ -54,15 +58,51 @@
     methods: {
       checkConnection() {
         if (this.chosenTermIndex === -1 || this.chosenDefinitionIndex === -1) {
-          alert ('לא נבחרו שני דברים לחיבור!')
+          this.showEmpty = true;
         } else {
-            
+          if (this.chosenTermKey === this.chosenDefinitionKey) {
+            console.log("success");
             let x1 = Number(this.chosenTermIndex) * (this.$refs.svg.clientWidth / this.termsNum) + (this.$refs.svg.clientWidth / this.termsNum / 2); 
             let x2 = Number(this.chosenDefinitionIndex) * (this.$refs.svg.clientWidth / this.termsNum) + (this.$refs.svg.clientWidth / this.termsNum / 2);
             let y1 = 0;
             let y2 = this.$refs.svg.clientHeight;   
             this.paths[this.chosenTermIndex] =  `M ${x1} ${y1} C ${x1} ${y2 * 1.2} ${x2} ${y2 * 0.01} ${x2} ${y2}`;
+            this.chosenTermIndex = -1;
+            this.chosenTermKey = -1;
+            this.chosenDefinitionIndex = -1;
+            this.chosenDefinitionKey = -1;
+          } else {
+            this.failedAnimation = true;
+            setTimeout(() => {
+              this.failedAnimation = false;
+              this.chosenTermIndex = -1;
+              this.chosenTermKey = -1;
+              this.chosenDefinitionIndex = -1;
+              this.chosenDefinitionKey = -1;
+            }, 2100);
+          }
+          this.showEmpty = false;
         }
+      },
+      chosenItem(currItem, keyNameIndex, currIndex) {
+        if (currItem === "term") {
+          if (this.chosenTermIndex === currIndex) {
+            this.chosenTermIndex = -1;
+            this.chosenTermKey = -1;
+          } else {
+            this.chosenTermIndex = currIndex;
+            this.chosenTermKey = keyNameIndex;
+          }
+        } else {
+          if (this.chosenDefinitionIndex === currIndex) {
+            this.chosenDefinitionIndex = -1;
+            this.chosenDefinitionKey = -1;
+          } else {
+            this.chosenDefinitionIndex = currIndex;
+            this.chosenDefinitionKey = keyNameIndex;
+          }
+        }
+
       }
     },
   }
@@ -72,7 +112,7 @@
   .content-container {
     width: 40rem;
     /* height: 100%; */
-    height: 25rem;
+    height: 20rem;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(v-bind("termsNum"), 1fr);
     justify-items: center;
@@ -91,6 +131,7 @@
     margin: 5%;
     text-align: center;
     justify-content: center;
+    font-size: 0.8rem;
   }
 
   .term:hover,
@@ -127,7 +168,16 @@
 
   .connect {
     position: absolute;
-    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 1rem;
+    border-radius: 3rem;
+    border: 0.06rem solid black;
+    width: 3rem;
+    align-self: center;
+    font-weight: 500;
+    font-size: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
   .connect:hover {
@@ -138,6 +188,46 @@
     font-size: 0.6rem;
     color: red;
     margin-right: 1rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 1rem;
+    top: 23rem;
+  }
+
+  @keyframes failedConnection {
+    0% {
+      background-color: rgba(255, 255, 255, 0.589);
+    }
+    50% {
+      background-color: rgb(250, 195, 195);
+    }
+    100% {
+      background-color: rgba(255, 255, 255, 0.589);
+    }
+  }
+
+  @-webkit-keyframes failedConnection {
+    0% {
+      background-color: rgba(255, 255, 255, 0.589);
+    }
+    50% {
+      background-color: rgb(250, 195, 195);
+    }
+    100% {
+      background-color: rgba(255, 255, 255, 0.589);
+    }
+  }
+
+  .failed {
+    animation: failedConnection 0.7s ease 3;
+    -webkit-animation: failedConnection 0.7s ease 3;
+  }
+
+  .question {
+    font-size: 0.9rem;
+    position: relative;
+    top: 2rem;
   }
 
 </style>
