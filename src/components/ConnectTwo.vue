@@ -111,7 +111,6 @@
 <style scoped>
   .content-container {
     width: 40rem;
-    /* height: 100%; */
     height: 20rem;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(v-bind("termsNum"), 1fr);
@@ -128,7 +127,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 5rem;
-    margin: 5%;
+    margin: 0 5%;
     text-align: center;
     justify-content: center;
     font-size: 0.8rem;
@@ -153,7 +152,6 @@
   .svg {
     grid-column: 1 / -1;
     grid-row: 2 / 3;
-    background-color: rgba(55, 238, 238, 0.422);
     width: 100%;
     height: 100%;
   }
