@@ -11,8 +11,9 @@
       :id="`input${index}`" :style="`grid-column: ${index + 1} / ${index + 2}`" @click="chosenItem('definition', Object.keys(definitions)[index], index)"> {{ Object.values(definitions)[index] }} </div>
     </div>
   </div>
-  <button @click="checkConnection" class="connect">חבר</button>
+  <button v-if="!allConnected" @click="checkConnection" class="connect">חבר</button>
   <span v-show="showEmpty" class="error-message">נראה שלא בחרת מושג והגדרה...</span>
+  <button v-if="allConnected" class="check" @click="proceed">בואו נמשיך!</button>
 </template>
 
 <script>
@@ -34,6 +35,8 @@
         paths: [],
         showEmpty: false,
         failedAnimation: false,
+        allConnected: false,
+        connectionNum: 0
       }
     },
     mounted() {
@@ -61,7 +64,6 @@
           this.showEmpty = true;
         } else {
           if (this.chosenTermKey === this.chosenDefinitionKey) {
-            console.log("success");
             let x1 = Number(this.chosenTermIndex) * (this.$refs.svg.clientWidth / this.termsNum) + (this.$refs.svg.clientWidth / this.termsNum / 2); 
             let x2 = Number(this.chosenDefinitionIndex) * (this.$refs.svg.clientWidth / this.termsNum) + (this.$refs.svg.clientWidth / this.termsNum / 2);
             let y1 = 0;
@@ -71,6 +73,7 @@
             this.chosenTermKey = -1;
             this.chosenDefinitionIndex = -1;
             this.chosenDefinitionKey = -1;
+            this.connectionNum++;
           } else {
             this.failedAnimation = true;
             setTimeout(() => {
@@ -82,6 +85,9 @@
             }, 2100);
           }
           this.showEmpty = false;
+        }
+        if (this.connectionNum === this.ques.term.length) {
+          this.allConnected = true;
         }
       },
       chosenItem(currItem, keyNameIndex, currIndex) {
@@ -102,8 +108,15 @@
             this.chosenDefinitionKey = keyNameIndex;
           }
         }
-
-      }
+      },
+      proceed() {
+        this.terms = {};
+        this.definitions = {};
+        this.paths = [];
+        this.showEmpty = false;
+        this.allConnected = false;
+        this.$emit('finished');
+      },
     },
   }
 </script>
@@ -164,24 +177,6 @@
     background-color: rgb(179, 238, 220);
   }
 
-  .connect {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 1rem;
-    border-radius: 3rem;
-    border: 0.06rem solid black;
-    width: 3rem;
-    align-self: center;
-    font-weight: 500;
-    font-size: 0.8rem;
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-
-  .connect:hover {
-    cursor: pointer;
-  }
-
   .error-message {
     font-size: 0.6rem;
     color: red;
@@ -226,6 +221,24 @@
     font-size: 0.9rem;
     position: relative;
     top: 2rem;
+  }
+
+  .connect, .check {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 1rem;
+    border-radius: 3rem;
+    border: 0.06rem solid black;
+    width: 3rem;
+    align-self: center;
+    font-weight: 500;
+    font-size: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .connect:hover, check:hover {
+    cursor: pointer;
   }
 
 </style>

@@ -47,9 +47,9 @@
       },
       indicationScr(param) {
         if (this.answerStatus[param] === "correct") {
-          return new URL("@/assets/correct.png", import.meta.url).href;
+          return new URL("@/assets/correct.svg", import.meta.url).href;
         } else {
-          return new URL("@/assets/false.png", import.meta.url).href;
+          return new URL("@/assets/wrong.svg", import.meta.url).href;
         }
       },
       proceed() {
@@ -101,6 +101,7 @@
 
   .indication {
     width: 1rem;
+    margin: 0 0.2rem;
   }
 
 </style>
