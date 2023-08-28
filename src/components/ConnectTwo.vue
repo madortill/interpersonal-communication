@@ -237,6 +237,10 @@
     background-color: rgba(255, 255, 255, 0.5);
   }
 
+  .check {
+    width: 5rem;
+  }
+
   .connect:hover, check:hover {
     cursor: pointer;
   }

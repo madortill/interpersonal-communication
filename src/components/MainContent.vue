@@ -2,7 +2,7 @@
   <div id="main-content">
     <div class="content-container">
       <p id="title" class="titles">{{ title[currSubj] }}</p>
-      <div class="">
+      <div class="content">
         <p v-for="(t, index) in content[`page${currPage}`]" :key="index">{{ t }}</p>
       </div>
     </div>
@@ -49,13 +49,21 @@ import json from '@/data.json'
   .content-container {
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.589);
-    border-radius: 20%;
+    background-image: url("@/assets/background-text.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 10%;
+
   }
 
   .titles {
     font-weight: 600;
+  }
+
+  .content, 
+  .titles {
+    position: relative;
+    top: -2rem;
   }
 
 </style>

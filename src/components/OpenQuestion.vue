@@ -30,12 +30,14 @@
     methods: {
       proceed() {
         this.inputValue = '';
+        this.checked = false;
         this.$emit('finished');
       },
       checkAnswer() {
         if (!this.inputValue) {
           this.showEmpty = true;
         } else {
+          this.showEmpty = false;
           this.checked = true;
         }
       }
@@ -47,8 +49,9 @@
   .content-container {
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.589);
-    border-radius: 2rem;
+    background-image: url("@/assets/background-text.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 10%;
     display: flex;
     flex-direction: column;

@@ -1,38 +1,39 @@
 <template>
-    <div id="background">
-      <div class="background">
-      </div>
+  <div id="background">
+    <div class="background">
+      <img src="@/assets/communication-towers.svg" alt="communication-towers" style="position: absolute; bottom: -4rem;">
     </div>
-  </template>
-  
-  <script>
-  
-    export default {
-      name: "background",
-      components: {
-        
-      },
-      data() {
-        return {
-          
-        }
-      },
-      methods: {
+  </div>
+</template>
+
+<script>
+
+  export default {
+    name: "background",
+    components: {
+      
+    },
+    data() {
+      return {
         
       }
+    },
+    methods: {
+      
     }
-  </script>
-  
-  <style scoped>
-    
-    .background {
-        height: 100vh;
-        width: 100vw;
-        /* background-image: url("@/assets/"); */
-        background-color: rgb(3 190 223 / 67%);
-        background-size: 100vw 100vh;
-        background-repeat: no-repeat;
-    }
+  }
+</script>
 
-  </style>
+<style scoped>
+  
+  .background {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("@/assets/background-day.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+</style>
   

@@ -1,17 +1,6 @@
 <template>
   <div id="multiple-choice">
     <div class="content-container">
-      <!-- <span class="question"> {{ ques.quest }} </span>
-      <div class="answers">
-        <ul style="padding-right: 0; margin: 0;">
-          <li v-for="(answer, index) in ques.ans" :key="index" class="ans" @click="revealAnswers(index)">
-            <img class="indication" v-show="showAnswers && (index === ques.correct || index === chosenAnswer)" :src="indicationScr(index)">
-            <span>{{ answer }}</span>
-          </li>
-        </ul>
-        <button v-if="!showAnswers" class="check" @click="checkAnswers">יש לי את זה!</button>
-        <button class="continue" v-show="showAnswers" @click="proceed">הבנתי!</button>
-      </div> -->
       <span class="question"> {{ ques.quest }} </span>
       <br> <span class="question"> בחרו את התשובה הנכונה! </span>
       <div class="answers">
@@ -22,7 +11,7 @@
           </li>
         </ul>
       </div>
-      <button v-if="!showAnswers" class="check" @click="chosenAnswer === ques.correct ? showAnswers = true : showEmpty = true">בדוק אותי!</button>
+      <button v-if="!showAnswers" class="check" @click="chosenAnswer !== -1 ? showAnswers = true : showEmpty = true">בדוק אותי!</button>
       <span v-if="showEmpty" class="error-message">אופס, נראה שלא ענית על השאלה</span>
       <button class="continue" v-show="showAnswers" @click="proceed">בואו נמשיך</button>
     </div>
@@ -73,8 +62,9 @@
   .content-container {
     width: 25rem; 
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.589);
-    border-radius: 2rem;
+    background-image: url("@/assets/background-text.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 10%;
     display: flex;
     flex-direction: column;
