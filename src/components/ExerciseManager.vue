@@ -35,9 +35,9 @@
     },
     methods: {
       next() {
-        if (this.question !== undefined) {
-          this.currQuestion++;
-        } else {
+        this.currQuestion++;
+        if (this.question === undefined) {
+          this.currQuestion = 0;
           this.$emit('next-page');
         }
       }

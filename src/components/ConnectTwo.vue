@@ -1,19 +1,21 @@
 <template>
-  <span class="question"> {{ ques.question }} </span>
-  <div id="connect-two" class="content-container">
-    <svg class="svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" ref="svg">
-      <path :id="`path${index - 1}`" v-for="index in termsNum" :key="colorsArr[index - 1]" :stroke="colorsArr[index - 1]" stroke-width="0.5%" fill="none" :d="paths[index - 1]"></path>
-    </svg>
-    <div v-for="(string, keyName, index) in terms" :key="keyName" class="ignore">
-      <div :class="['term', chosenTermKey === keyName ? 'chosen' : '', failedAnimation && chosenTermKey === keyName ? 'failed' : '']" :style="`grid-column: ${index + 1} / ${index + 2}`" 
-      @click="chosenItem('term', keyName, index)"> {{ string }} </div>
-      <div :class="['definition', chosenDefinitionKey === Object.keys(definitions)[index] ? 'chosen' : '', failedAnimation && chosenDefinitionKey === Object.keys(definitions)[index] ? 'failed' : '']" 
-      :id="`input${index}`" :style="`grid-column: ${index + 1} / ${index + 2}`" @click="chosenItem('definition', Object.keys(definitions)[index], index)"> {{ Object.values(definitions)[index] }} </div>
+  <div class="container">
+    <span class="question"> {{ ques.question }} </span>
+    <div id="connect-two" class="content-container">
+      <svg class="svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" ref="svg">
+        <path :id="`path${index - 1}`" v-for="index in termsNum" :key="colorsArr[index - 1]" :stroke="colorsArr[index - 1]" stroke-width="0.5%" fill="none" :d="paths[index - 1]"></path>
+      </svg>
+      <div v-for="(string, keyName, index) in terms" :key="keyName" class="ignore">
+        <div :class="['term', chosenTermKey === keyName ? 'chosen' : '', failedAnimation && chosenTermKey === keyName ? 'failed' : '']" :style="`grid-column: ${index + 1} / ${index + 2}`" 
+        @click="chosenItem('term', keyName, index)"> {{ string }} </div>
+        <div :class="['definition', chosenDefinitionKey === Object.keys(definitions)[index] ? 'chosen' : '', failedAnimation && chosenDefinitionKey === Object.keys(definitions)[index] ? 'failed' : '']" 
+        :id="`input${index}`" :style="`grid-column: ${index + 1} / ${index + 2}`" @click="chosenItem('definition', Object.keys(definitions)[index], index)"> {{ Object.values(definitions)[index] }} </div>
+      </div>
     </div>
+    <button v-if="!allConnected" @click="checkConnection" class="connect">חבר</button>
+    <span v-show="showEmpty" class="error-message">נראה שלא בחרת מושג והגדרה...</span>
+    <button v-if="allConnected" class="check" @click="proceed">בואו נמשיך!</button>
   </div>
-  <button v-if="!allConnected" @click="checkConnection" class="connect">חבר</button>
-  <span v-show="showEmpty" class="error-message">נראה שלא בחרת מושג והגדרה...</span>
-  <button v-if="allConnected" class="check" @click="proceed">בואו נמשיך!</button>
 </template>
 
 <script>
@@ -31,7 +33,7 @@
         chosenDefinitionIndex: -1,
         chosenDefinitionKey: -1,
         termsNum: this.ques.term.length,
-        colorsArr: ["#FFC0CB", "#03e3fc", "#d1043b", "#d16004", "#f57802", "#000000"],
+        colorsArr: ["#32a852", "#2284e6", "#ed130c", "#fafa05", "#fc9403", "#242323"],
         paths: [],
         showEmpty: false,
         failedAnimation: false,
@@ -122,6 +124,17 @@
 </script>
 
 <style scoped>
+    .container {
+      width: 35rem;
+      height: 18rem;
+      background-image: url("@/assets/background-text.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding: 10%;
+      display: flex;
+      flex-direction: column;
+    }
+
   .content-container {
     width: 40rem;
     height: 20rem;
@@ -129,6 +142,8 @@
     grid-template: repeat(3, 1fr) / repeat(v-bind("termsNum"), 1fr);
     justify-items: center;
     direction: ltr;
+    position: relative;
+    top: -2rem;
   }
 
   .term,
@@ -180,12 +195,10 @@
   .error-message {
     font-size: 0.6rem;
     color: red;
-    margin-right: 1rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     margin: 1rem;
-    top: 23rem;
+    top: -5.5rem;
+    align-self: center;
   }
 
   @keyframes failedConnection {
@@ -220,14 +233,13 @@
   .question {
     font-size: 0.9rem;
     position: relative;
-    top: 2rem;
+    top: -1rem;
   }
 
   .connect, .check {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
     margin: 1rem;
+    top: -4rem;
     border-radius: 3rem;
     border: 0.06rem solid black;
     width: 3rem;
@@ -241,7 +253,7 @@
     width: 5rem;
   }
 
-  .connect:hover, check:hover {
+  .connect:hover, .check:hover {
     cursor: pointer;
   }
 

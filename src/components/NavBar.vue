@@ -35,7 +35,9 @@ export default {
   },
   methods: {
     changeScreen(page) {
-      this.$emit('change-page', page);
+      if (this.currPage !== 11 && this.currPage !== 16 && this.currPage !== 19 && this.currPage !== 21) {
+        this.$emit('change-page', page);
+      }
     },
     showSubjName(subjNum) {
 

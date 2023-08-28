@@ -7,8 +7,10 @@
       <img class="indication" v-if="showAnswers && answerStatus[index] !== 'null'" :src="indicationScr(index)">
     </div>
     <div class="input-container" v-if="showContainer">
-      <span>מאגר תשובות:</span>
-      <br><span v-for="input in ques.answers" :key="input"> {{ input }}, </span>
+      <span>היעזרו במאגר המילים:</span>
+      <div v-for="input in ques.answers" :key="input" class="item">
+        <br><span> {{ input }} </span>
+      </div>
     </div>
     <button v-if="!allCorrect" class="check" @click="checkAnswers">בדוק אותי!</button>
     <button v-if="allCorrect" class="check" style="width: 5rem;" @click="proceed">בואו נמשיך!</button>
@@ -68,8 +70,7 @@
 
 <style scoped>
   .content-container {
-    width: 100%;
-    height: 100%;
+    height: 12rem;
     background-image: url("@/assets/background-text.svg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -105,6 +106,10 @@
   .indication {
     width: 1rem;
     margin: 0 0.2rem;
+  }
+
+  .item {
+    line-height: 0.6rem;
   }
 
 </style>
