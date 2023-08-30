@@ -38,11 +38,15 @@
           if (this.userInput[index] === undefined) {
             this.answerStatus[index] = "null";
           } else if (this.userInput[index] === this.ques.answers[index]) {
-            this.allCorrect = true;
             this.answerStatus[index] = "correct";
           } else {
-            this.allCorrect = false;
             this.answerStatus[index] = "wrong";
+          }
+        }
+        this.allCorrect = true;
+        for (let i = 0; i < this.answerStatus.length; i++) {
+          if (this.answerStatus[i] === "wrong") {
+            this.allCorrect = false;
           }
         }
         this.timesAnswered++;
@@ -71,25 +75,29 @@
 <style scoped>
   .content-container {
     height: 12rem;
-    background-image: url("@/assets/background-text.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
     padding: 10%;
     display: flex;
     flex-direction: column;
     width: 20rem;
   }
 
+  .question {
+    font-size: 0.9rem;
+  }
+
   .check {
     margin: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 3rem;
-    border: 0.06rem solid black;
+    border: 0.06rem solid rgb(255, 255, 255);
     width: 4rem;
     align-self: center;
     font-weight: 500;
     font-size: 0.6rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgb(0, 0, 0);
+    color: white;
+    position: relative;
+    right: -2rem;
   }
 
   .input {
@@ -103,6 +111,18 @@
     font-size: 0.8rem;
   }
 
+  .input-container {
+    border: 0.1rem solid black;
+    padding: 0.4rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    align-self: center;
+    text-align: center;
+    width: 10rem;
+    position: relative;
+    right: -2rem;
+  }
+
   .indication {
     width: 1rem;
     margin: 0 0.2rem;
@@ -110,6 +130,10 @@
 
   .item {
     line-height: 0.6rem;
+  }
+
+  button:hover {
+    cursor: pointer;
   }
 
 </style>

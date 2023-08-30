@@ -49,9 +49,9 @@
   .content-container {
     width: 100%;
     height: 100%;
-    background-image: url("@/assets/background-text.svg");
+    /* background-image: url("@/assets/background-text.svg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     padding: 10%;
     display: flex;
     flex-direction: column;
@@ -77,12 +77,13 @@
   .check,
   .continue {
     border-radius: 3rem;
-    border: 0.06rem solid black;
+    border: 0.06rem solid rgb(255, 255, 255);
     width: fit-content;
     align-self: center;
     font-weight: 500;
     font-size: 0.6rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgb(0, 0, 0);
+    color: white;
   }
 
   .error-message {
@@ -93,7 +94,11 @@
 
   .question,
   .answer {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  button:hover {
+    cursor: pointer;
   }
 
 </style>

@@ -125,19 +125,19 @@
 
 <style scoped>
     .container {
-      width: 35rem;
+      width: 30rem;
       height: 18rem;
-      background-image: url("@/assets/background-text.svg");
-      background-repeat: no-repeat;
-      background-size: cover;
+      right: -1rem;
+      top: 1rem;
+      position: relative;
       padding: 10%;
       display: flex;
       flex-direction: column;
     }
 
   .content-container {
-    width: 40rem;
-    height: 20rem;
+    width: 30rem;
+    height: 17rem;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(v-bind("termsNum"), 1fr);
     justify-items: center;
@@ -148,7 +148,7 @@
 
   .term,
   .definition {
-    background-color: rgba(255, 255, 255, 0.589);
+    background-color: rgba(255, 255, 255, 0.548);
     border-radius: 0.5rem ;
     padding: 5%;
     display: flex;
@@ -159,6 +159,7 @@
     text-align: center;
     justify-content: center;
     font-size: 0.8rem;
+    
   }
 
   .term:hover,
@@ -189,7 +190,7 @@
   }
 
   .chosen {
-    background-color: rgb(179, 238, 220);
+    background-color: rgb(179, 216, 238);
   }
 
   .error-message {
@@ -239,14 +240,15 @@
   .connect, .check {
     position: relative;
     margin: 1rem;
-    top: -4rem;
+    top: -2rem;
     border-radius: 3rem;
-    border: 0.06rem solid black;
+    border: 0.06rem solid rgb(255, 255, 255);
     width: 3rem;
     align-self: center;
     font-weight: 500;
     font-size: 0.8rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgb(0, 0, 0);
+    color: white;
   }
 
   .check {
@@ -254,6 +256,10 @@
   }
 
   .connect:hover, .check:hover {
+    cursor: pointer;
+  }
+
+  button:hover {
     cursor: pointer;
   }
 

@@ -5,8 +5,8 @@
       <br> <span class="question"> בחרו את התשובה הנכונה! </span>
       <div class="answers">
         <ul style="padding-right: 0; margin: 0; border-collapse: collapse;">
-          <li v-for="(answer, index) in ques.ans" :key="index" :class="[index === chosenAnswer ? 'selected' : '', 'ans']" @click="selectAnswer(index)">
-            <img class="indication" v-show="showAnswers && (index === ques.correct || index === chosenAnswer)" :src="indicationScr(index)">
+          <li v-for="(answer, index) in ques.ans" :key="index" class="ans" @click="selectAnswer(index)">
+            <img class="indication" :src="indicationScr(index)">
             <span>{{ answer }}</span>
           </li>
         </ul>
@@ -38,11 +38,28 @@
         this.$emit('finished');
       },
       indicationScr(param) {
-        if (param === this.ques.correct) {
-          return new URL("@/assets/correct.svg", import.meta.url).href;
+        let currSrc;
+        if (this.showAnswers === false) {
+          if (this.chosenAnswer === param) {
+            currSrc = new URL("@/assets/blue-circle.png", import.meta.url).href;
+          } else {
+            currSrc = new URL("@/assets/grey-circle.png", import.meta.url).href;
+          }
         } else {
-          return new URL("@/assets/wrong.svg", import.meta.url).href;
+          if (param === this.ques.correct) {
+            currSrc = new URL("@/assets/green-circle.png", import.meta.url).href;
+          } else if (this.chosenAnswer === param) {
+            currSrc = new URL("@/assets/red-circle.png", import.meta.url).href;
+          } else {
+            currSrc = new URL("@/assets/grey-circle.png", import.meta.url).href;
+          }
         }
+        return currSrc;
+        // if (param === this.ques.correct) {
+        //   return new URL("@/assets/correct.svg", import.meta.url).href;
+        // } else {
+        //   return new URL("@/assets/wrong.svg", import.meta.url).href;
+        // }
       },
       selectAnswer(num) {
         if (!this.showAnswers) {
@@ -62,12 +79,11 @@
   .content-container {
     width: 25rem; 
     height: 100%;
-    background-image: url("@/assets/background-text.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
     padding: 10%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    right: -2rem;
   }
 
   .indication {
@@ -77,7 +93,6 @@
   .ans {
     list-style: none;
     margin: 0.7rem;
-    border: 0.02rem solid black;
   }
 
   .question,
@@ -92,7 +107,6 @@
 
   .answers {
     display: flex;
-    border-collapse: collapse;
   }
 
   .imgs {
@@ -101,19 +115,19 @@
     margin-bottom: 1rem;
   }
 
-  .selected {
-    border: 0.1rem solid white;
-  }
-
   .check,
   .continue {
     border-radius: 3rem;
-    border: 0.06rem solid black;
+    border: 0.06rem solid rgb(255, 255, 255);
     width: fit-content;
     align-self: center;
     font-weight: 500;
     font-size: 0.6rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgb(0, 0, 0);
+    color: white;
+    position: relative;
+    right: -1rem;
+    margin: 1rem;
   }
 
   .check:hover,
@@ -125,6 +139,10 @@
     font-size: 0.6rem;
     color: red;
     margin-right: 1rem;
+  }
+
+  button:hover {
+    cursor: pointer;
   }
   
 </style>

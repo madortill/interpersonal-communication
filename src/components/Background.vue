@@ -1,8 +1,6 @@
 <template>
   <div id="background">
-    <div class="background">
-      <img src="@/assets/communication-towers.svg" alt="communication-towers" style="position: absolute; bottom: -4rem;">
-    </div>
+    <div class="background"></div>
   </div>
 </template>
 

@@ -24,19 +24,19 @@ import json from '@/data.json'
         },
         currSubj() {
           let num = '';
-          if (this.currPage === 4) {
+          if (this.currPage === 3) {
             num = 0;
-          } else if (this.currPage === 5) {
+          } else if (this.currPage === 4) {
             num = 1;
-          } else if (this.currPage >= 6 && this.currPage < 11) {
+          } else if (this.currPage >= 5 && this.currPage < 10) {
             num = 2;
-          } else if (this.currPage === 12) {
+          } else if (this.currPage === 11) {
             num = 3;
-          } else if (this.currPage >= 13 && this.currPage < 15) {
+          } else if (this.currPage >= 12 && this.currPage < 14) {
             num = 4;
-          } else if (this.currPage === 15) {
+          } else if (this.currPage === 14) {
             num = 5;
-          } else if (this.currPage >= 16) {
+          } else if (this.currPage >= 15) {
             num = 6;
           }
           return num;
@@ -49,10 +49,9 @@ import json from '@/data.json'
   .content-container {
     width: 100%;
     height: 100%;
-    background-image: url("@/assets/background-text.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 10%;
+    position: relative;
+    /* right: 2rem; */
+    top: -1rem;
 
   }
 

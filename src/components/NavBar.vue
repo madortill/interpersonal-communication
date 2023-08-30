@@ -1,21 +1,17 @@
 <template>
   <div id="nav-bar">
     <ol class="progress">
-      <li @click="changeScreen(subj1)" :class="[currPage >= 4 && currPage <= 11 ? 'is-active' : '']"><span>מושגים
-          בתקשורת</span></li>
-      <li @click="changeScreen(subj2)" :class="[currPage >= 12 && currPage <= 16 ? 'is-active' : '']"><span>מודלים
-          תקשורתיים</span></li>
-      <li @click="changeScreen(subj3)" :class="[currPage >= 17 && currPage <= 19 ? 'is-active' : '']"><span>סיבות לרעשים
-          תקשורתיים</span></li>
-      <li @click="changeScreen(subj4)" :class="[currPage >= 20 && currPage <= 21 ? 'is-active' : '']"><span>פתרונות לרעשים
-          תקשורתיים</span></li>
+      <li @click="changeScreen(subj1)" :class="[currPage >= 3 && currPage <= 10 ? 'is-active' : '', subj1Hover ? 'show-title' : '']"><span>מושגים בתקשורת</span></li>
+      <li @click="changeScreen(subj2)" :class="[currPage >= 11 && currPage <= 15 ? 'is-active' : '', subj2Hover ? 'show-title' : '']"><span>מודלים תקשורתיים</span></li>
+      <li @click="changeScreen(subj3)" :class="[currPage >= 16 && currPage <= 18 ? 'is-active' : '', subj3Hover ? 'show-title' : '']"><span>סיבות לרעשים תקשורתיים</span></li>
+      <li @click="changeScreen(subj4)" :class="[currPage >= 19 && currPage <= 20 ? 'is-active' : '', subj4Hover ? 'show-title' : '']"><span>פתרונות לרעשים תקשורתיים</span></li>
     </ol>
     <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1203 33.94">
       <line class="cls-1" y1="16.97" x2="1203" y2="16.97" />
-      <rect @click="changeScreen(subj4)" @mouseover="showSubjName(4)" class="cls-2" x="243.87" y="4.97" width="24" height="24" transform="translate(86.94 -175.96) rotate(45)" />
-      <rect @click="changeScreen(subj3)" @mouseover="showSubjName(3)" class="cls-2" x="478.25" y="4.97" width="24" height="24" transform="translate(155.59 -341.69) rotate(45)" />
-      <rect @click="changeScreen(subj2)" @mouseover="showSubjName(2)" class="cls-2" x="713.62" y="4.97" width="24" height="24" transform="translate(224.53 -508.12) rotate(45)" />
-      <rect @click="changeScreen(subj1)" @mouseover="showSubjName(1)" class="cls-2" x="933" y="4.97" width="24" height="24" transform="translate(288.78 -663.25) rotate(45)" />
+      <rect @click="changeScreen(subj4)" class="cls-2" x="243.87" y="4.97" width="24" height="24" transform="translate(86.94 -175.96) rotate(45)" />
+      <rect @click="changeScreen(subj3)" class="cls-2" x="478.25" y="4.97" width="24" height="24" transform="translate(155.59 -341.69) rotate(45)" />
+      <rect @click="changeScreen(subj2)" class="cls-2" x="713.62" y="4.97" width="24" height="24" transform="translate(224.53 -508.12) rotate(45)" />
+      <rect @click="changeScreen(subj1)" class="cls-2" x="933" y="4.97" width="24" height="24" transform="translate(288.78 -663.25) rotate(45)" />
     </svg>
   </div>
 </template>
@@ -27,20 +23,17 @@ export default {
   props: ["currPage"],
   data() {
     return {
-      subj1: 4,
-      subj2: 12,
-      subj3: 17,
-      subj4: 20
+      subj1: 3,
+      subj2: 11,
+      subj3: 16,
+      subj4: 19,
     };
   },
   methods: {
     changeScreen(page) {
-      if (this.currPage !== 11 && this.currPage !== 16 && this.currPage !== 19 && this.currPage !== 21) {
+      if (this.currPage !== 10 && this.currPage !== 15 && this.currPage !== 18 && this.currPage !== 20) {
         this.$emit('change-page', page);
       }
-    },
-    showSubjName(subjNum) {
-
     }
   },
 }
@@ -67,6 +60,8 @@ body {
 
 #Layer_1 {
   width: 40rem;
+  position: relative;
+  top: -2rem;
 }
 
 .progress {
@@ -76,6 +71,8 @@ body {
   margin: 0 5rem 1rem 0;
   width: 27rem;
   color: white;
+  position: relative;
+  z-index: 2;
 }
 
 .progress li {
@@ -91,6 +88,7 @@ body {
   width: 3rem;
   text-align: center;
   border-bottom: 2px solid var(--color-gray-disabled);
+  padding-bottom: 2rem;
 }
 
 .progress li:first-child,
@@ -176,6 +174,7 @@ body {
 }
 
 .progress li:hover span,
+.progress li:hover,
 .progress li.is-hovered span {
   opacity: 1;
   cursor: pointer;
@@ -217,6 +216,11 @@ body {
 
 .cls-2:hover {
   cursor: pointer;
+}
+
+.show-title {
+  opacity: 1!important;
+  cursor: pointer!important;
 }
 
 </style>
