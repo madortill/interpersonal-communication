@@ -9,8 +9,8 @@
             <span>בדקו את עצמכם!</span>
             <br><span>תשובה: {{ ques.answer }} </span>
           </span>
-          <button v-else class="check" @click="checkAnswer">אני רוצה לבדוק!</button>
-          <button class="continue" v-show="checked" @click="proceed">הבנתי</button>
+          <button v-else class="general-btn" @click="checkAnswer">אני רוצה לבדוק!</button>
+          <button class="general-btn" v-show="checked" @click="proceed">הבנתי</button>
       </div>
   </div>
 </template>
@@ -65,25 +65,13 @@
   /* .error-message, */
   .continue {
     margin: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: assistant;
   }
 
   .input {
     width: 80%;
     height: fit-content;
     resize: none;
-  }
-
-  .check,
-  .continue {
-    border-radius: 3rem;
-    border: 0.06rem solid rgb(255, 255, 255);
-    width: fit-content;
-    align-self: center;
-    font-weight: 500;
-    font-size: 0.6rem;
-    background-color: rgb(0, 0, 0);
-    color: white;
   }
 
   .error-message {
@@ -95,10 +83,6 @@
   .question,
   .answer {
     font-size: 0.8rem;
-  }
-
-  button:hover {
-    cursor: pointer;
   }
 
 </style>

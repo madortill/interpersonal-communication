@@ -12,9 +12,9 @@
         :id="`input${index}`" :style="`grid-column: ${index + 1} / ${index + 2}`" @click="chosenItem('definition', Object.keys(definitions)[index], index)"> {{ Object.values(definitions)[index] }} </div>
       </div>
     </div>
-    <button v-if="!allConnected" @click="checkConnection" class="connect">חבר</button>
+    <button v-if="!allConnected" @click="checkConnection" class="general-btn">חבר</button>
     <span v-show="showEmpty" class="error-message">נראה שלא בחרת מושג והגדרה...</span>
-    <button v-if="allConnected" class="check" @click="proceed">בואו נמשיך!</button>
+    <button v-if="allConnected" class="general-btn" @click="proceed">בואו נמשיך!</button>
   </div>
 </template>
 
@@ -235,32 +235,6 @@
     font-size: 0.9rem;
     position: relative;
     top: -1rem;
-  }
-
-  .connect, .check {
-    position: relative;
-    margin: 1rem;
-    top: -2rem;
-    border-radius: 3rem;
-    border: 0.06rem solid rgb(255, 255, 255);
-    width: 3rem;
-    align-self: center;
-    font-weight: 500;
-    font-size: 0.8rem;
-    background-color: rgb(0, 0, 0);
-    color: white;
-  }
-
-  .check {
-    width: 5rem;
-  }
-
-  .connect:hover, .check:hover {
-    cursor: pointer;
-  }
-
-  button:hover {
-    cursor: pointer;
   }
 
 </style>

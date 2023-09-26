@@ -11,9 +11,9 @@
           </li>
         </ul>
       </div>
-      <button v-if="!showAnswers" class="check" @click="chosenAnswer !== -1 ? showAnswers = true : showEmpty = true">בדוק אותי!</button>
+      <button v-if="!showAnswers" class="general-btn" @click="chosenAnswer !== -1 ? showAnswers = true : showEmpty = true">בדוק אותי!</button>
       <span v-if="showEmpty" class="error-message">אופס, נראה שלא ענית על השאלה</span>
-      <button class="continue" v-show="showAnswers" @click="proceed">בואו נמשיך</button>
+      <button class="general-btn" v-show="showAnswers" @click="proceed">בואו נמשיך</button>
     </div>
   </div>
 </template>
@@ -114,35 +114,10 @@
     list-style: none;
     margin-bottom: 1rem;
   }
-
-  .check,
-  .continue {
-    border-radius: 3rem;
-    border: 0.06rem solid rgb(255, 255, 255);
-    width: fit-content;
-    align-self: center;
-    font-weight: 500;
-    font-size: 0.6rem;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    position: relative;
-    right: -1rem;
-    margin: 1rem;
-  }
-
-  .check:hover,
-  .continue:hover {
-    cursor: pointer;
-  }
-
   .error-message {
     font-size: 0.6rem;
     color: red;
     margin-right: 1rem;
-  }
-
-  button:hover {
-    cursor: pointer;
   }
   
 </style>

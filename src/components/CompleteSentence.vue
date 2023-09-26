@@ -12,8 +12,8 @@
         <br><span> {{ input }} </span>
       </div>
     </div>
-    <button v-if="!allCorrect" class="check" @click="checkAnswers">בדוק אותי!</button>
-    <button v-if="allCorrect" class="check" style="width: 5rem;" @click="proceed">בואו נמשיך!</button>
+    <button v-if="!allCorrect" class="general-btn" @click="checkAnswers">בדוק אותי!</button>
+    <button v-if="allCorrect" class="general-btn" style="width: 5rem;" @click="proceed">בואו נמשיך!</button>
   </div>
 </template>
 
@@ -85,21 +85,6 @@
     font-size: 0.9rem;
   }
 
-  .check {
-    margin: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border-radius: 3rem;
-    border: 0.06rem solid rgb(255, 255, 255);
-    width: 4rem;
-    align-self: center;
-    font-weight: 500;
-    font-size: 0.6rem;
-    background-color: rgb(0, 0, 0);
-    color: white;
-    position: relative;
-    right: -2rem;
-  }
-
   .input {
     width: 30%;
     height: fit-content;
@@ -108,7 +93,7 @@
   }
 
   .text, .input-container {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .input-container {
@@ -130,10 +115,6 @@
 
   .item {
     line-height: 0.6rem;
-  }
-
-  button:hover {
-    cursor: pointer;
   }
 
 </style>

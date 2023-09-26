@@ -40,6 +40,7 @@ export default {
 </script>
   
 <style scoped>
+
 :root {
   --color-white: #fff;
   --color-black: #333;
@@ -50,10 +51,10 @@ export default {
 
 * {
   box-sizing: border-box;
+  font-family: assistant;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
   color: var(--color-black);
   direction: rtl;
 }
