@@ -1,7 +1,6 @@
 <template>
   <div id="open-question">
       <div class="content-container">
-        <span class="question">שאלה פתוחה:</span>
           <span class="question"> {{ ques.question }} </span>
           <textarea class="input" rows="4" cols="50" v-model="inputValue"></textarea>
           <span v-if="showEmpty && !checked" class="error-message">אופס, נראה שלא ענית על השאלה</span>
@@ -47,7 +46,7 @@
 
 <style scoped>
   .content-container {
-    width: 100%;
+    width: 150%;
     height: 100%;
     /* background-image: url("@/assets/background-text.svg");
     background-repeat: no-repeat;
@@ -69,9 +68,10 @@
   }
 
   .input {
-    width: 80%;
+    width: 90%;
     height: fit-content;
     resize: none;
+    font-size: 0.8rem;
   }
 
   .error-message {
@@ -80,7 +80,10 @@
     margin-right: 1rem;
   }
 
-  .question,
+  .question  {
+    font-size: 1.5rem;
+    text-align: center;
+  }
   .answer {
     font-size: 0.8rem;
   }

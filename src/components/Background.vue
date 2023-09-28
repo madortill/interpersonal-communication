@@ -44,12 +44,15 @@ export default {
 }
 
 .building-animation {
-  animation: buildingAni 4s forwards;
+  animation: buildingAni 3s ease-in-out forwards;
 }
 
 @keyframes buildingAni {
   0% {
     bottom: -10%;
+  }
+  15% {
+    bottom: -8%;
   }
 
   100% {

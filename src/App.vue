@@ -1,14 +1,20 @@
 <template>
   <div id="app">
     <open-end-screen v-if="currScreen <= 2 || currScreen === 21" @next-page="currScreen++"
-      :currPage="currScreen"></open-end-screen>
+      :currPage="currScreen">
+    </open-end-screen>
+
     <main-content
       v-if="!(this.currScreen <= 2 || this.currScreen === 10 || this.currScreen === 15 || this.currScreen === 18 || this.currScreen >= 20)"
-      :currPage="currScreen" class="main-content"></main-content>
+      :currPage="currScreen" class="main-content">
+    </main-content>
+
     <exercise-manager class="exercise-manager"
       v-if="(this.currScreen === 10 || this.currScreen === 15 || this.currScreen === 18 || this.currScreen === 20)"
-      :currPage="currScreen" @next-page="currScreen++"></exercise-manager>
+      :currPage="currScreen" @next-page="currScreen++">
+    </exercise-manager>
   </div>
+  
   <background :currPage="currScreen" id="background"></background>
   <!-- <img v-show="currScreen >= 2 && currScreen <= 21" src="@/assets/background-text.svg" alt="background-text"
     class="bg-text"> -->
@@ -117,6 +123,8 @@ html {
   padding: 0.2rem 0.5rem;
   cursor: pointer;
   color: rgb(28 32 45);
+  align-self: center;
+  margin-top: 1rem;
 }
 
 .general-btn:hover {
@@ -175,13 +183,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  top: -1rem;
-  right: -2rem;
-  height: 22rem;
   z-index: 2;
 }
-
 
 button:hover {
   cursor: pointer;

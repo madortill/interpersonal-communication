@@ -41,17 +41,17 @@
         let currSrc;
         if (this.showAnswers === false) {
           if (this.chosenAnswer === param) {
-            currSrc = new URL("@/assets/blue-circle.png", import.meta.url).href;
+            currSrc = new URL("@/assets/multiple-btn-blue.svg", import.meta.url).href;
           } else {
-            currSrc = new URL("@/assets/grey-circle.png", import.meta.url).href;
+            currSrc = new URL("@/assets/multiple-btn.svg", import.meta.url).href;
           }
         } else {
           if (param === this.ques.correct) {
-            currSrc = new URL("@/assets/green-circle.png", import.meta.url).href;
+            currSrc = new URL("@/assets/multiple-btn-green.svg", import.meta.url).href;
           } else if (this.chosenAnswer === param) {
-            currSrc = new URL("@/assets/red-circle.png", import.meta.url).href;
+            currSrc = new URL("@/assets/multiple-btn-red.svg", import.meta.url).href;
           } else {
-            currSrc = new URL("@/assets/grey-circle.png", import.meta.url).href;
+            currSrc = new URL("@/assets/multiple-btn.svg", import.meta.url).href;
           }
         }
         return currSrc;
@@ -88,6 +88,7 @@
 
   .indication {
     width: 1rem;
+    margin: 0 1rem;
   }
 
   .ans {
@@ -95,7 +96,9 @@
     margin: 0.7rem;
   }
 
-  .question,
+  .question {
+    font-size: 1rem;
+  }
   .ans {
     font-size: 0.8rem;
   }

@@ -8,12 +8,27 @@
       </div>
 
       <!-- animations -->
-      <img v-show="showWave1" src="@/assets/comm-wave-3.svg" alt="comm-wave" class="comm-wave-large right">
-      <img v-show="showWave2" src="@/assets/comm-wave-2.svg" alt="comm-wave" class="comm-wave-mid right">
-      <img v-show="showWave3" src="@/assets/comm-wave-1.svg" alt="comm-wave" class="comm-wave-small right">
-      <img v-show="showWave4" src="@/assets/comm-wave-6.svg" alt="comm-wave" class="comm-wave-small left">
-      <img v-show="showWave5" src="@/assets/comm-wave-5.svg" alt="comm-wave" class="comm-wave-mid left">
-      <img v-show="showWave6" src="@/assets/comm-wave-4.svg" alt="comm-wave" class="comm-wave-large left">
+      <div class="animations-container">
+        <div class="side-animation">
+          <img src="@/assets/comm-wave-6.svg" alt="comm-wave"
+            :class="['comm-wave-small', 'left', showWave4 ? '' : 'hidden']">
+          <img src="@/assets/comm-wave-5.svg" alt="comm-wave"
+            :class="['comm-wave-mid', 'left', showWave5 ? '' : 'hidden']">
+          <img src="@/assets/comm-wave-4.svg" alt="comm-wave"
+            :class="['comm-wave-large', 'left', showWave6 ? '' : 'hidden']">
+        </div>
+        <div class="side-animation">
+          <img src="@/assets/comm-wave-3.svg" alt="comm-wave"
+            :class="['comm-wave-large', 'right', showWave1 ? '' : 'hidden']">
+          <img src="@/assets/comm-wave-2.svg" alt="comm-wave"
+            :class="['comm-wave-mid', 'right', showWave2 ? '' : 'hidden']">
+          <img src="@/assets/comm-wave-1.svg" alt="comm-wave"
+            :class="['comm-wave-small', 'right', showWave3 ? '' : 'hidden']">
+        </div>
+
+      </div>
+
+
 
       <!-- main text -->
       <div class="text-container">
@@ -23,11 +38,12 @@
       </div>
 
 
-      <div v-if="currPage === 21 && showRetry === true" class="retry">
-        <img src="@/assets/re-do-icon.svg" alt="redo" style="width: 3rem; margin-right: 0.5rem; margin-bottom: 1rem;">
-        <span>באלי שוב!</span>
-      </div>
+
     </div>
+    <!-- <div v-if="currPage === 21 && showRetry === true" class="retry">
+      <img src="@/assets/re-do-icon.svg" alt="redo" style="width: 3rem; margin-right: 0.5rem; margin-bottom: 1rem;">
+      <span>באלי שוב!</span>
+    </div> -->
   </div>
 </template>
 
@@ -132,6 +148,10 @@ export default {
   align-items: center;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .opening-container {
   width: 100%;
   height: 100%;
@@ -149,10 +169,10 @@ export default {
   display: flex;
   justify-content: center;
   justify-content: flex-start;
-    align-items: center;
-    padding-top: 3rem;
-    flex-direction: column;
-    align-content: center;
+  align-items: center;
+  padding-top: 3rem;
+  flex-direction: column;
+  align-content: center;
 
 }
 
@@ -167,60 +187,69 @@ export default {
   background-color: rgb(255, 255, 255);
 }
 
-.comm-wave-small {
-  width: 2.2rem;
-  height: 2.2rem;
-}
-
 .start-header {
   color: #f6f6f6;
   font-size: 5rem;
   width: 70%;
   text-align: center;
+  margin-bottom: 5rem;
+  text-shadow: rgb(69, 69, 69) 1px 0 10px;
+}
+
+.animations-container {
+  position: absolute;
+  width: 95%;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.comm-wave-small {
+  width: 5%;
+  height: 5%;
+}
+
+.side-animation {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .comm-wave-mid {
-  width: 4rem;
-  height: 4rem;
+  width: 10%;
+  height: 10%;
 }
 
 .comm-wave-large {
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 15%;
+  height: 15%;
 }
 
 .comm-wave-large,
 .comm-wave-mid,
 .comm-wave-small {
-  position: absolute;
+  position: relative;
 }
 
 .left {
-  left: 32rem;
-  bottom: 15rem;
+  /* left: 32rem;
+  bottom: 15rem; */
   rotate: -10deg;
 }
 
 .right {
-  right: 32rem;
-  bottom: 15rem;
+  /* right: 32rem;
+  bottom: 15rem; */
   rotate: 10deg;
-}
-
-.comm-wave-large.right {
-  right: 26.5rem;
-}
-
-.comm-wave-mid.right {
-  right: 29.5rem;
-}
-
-.comm-wave-large.left {
-  left: 26.5rem;
-}
-
-.comm-wave-mid.left {
-  left: 29.5rem;
 }
 
 .text {
@@ -251,10 +280,13 @@ export default {
   position: relative;
   bottom: 9rem;
   right: 9rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .retry :hover {
   cursor: pointer;
-}
-</style>
+}</style>
   

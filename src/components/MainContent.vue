@@ -47,22 +47,20 @@ import json from '@/data.json'
 
 <style scoped>
   .content-container {
-    width: 100%;
+    width: 150%;
     height: 100%;
     position: relative;
-    /* right: 2rem; */
-    top: -1rem;
-
   }
 
   .titles {
     font-weight: 600;
+    font-size: 3rem;
+    margin: 1rem 0;
   }
 
   .content, 
   .titles {
     position: relative;
-    top: -2rem;
   }
 
 </style>

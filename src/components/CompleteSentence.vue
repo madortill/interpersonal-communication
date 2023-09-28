@@ -1,7 +1,7 @@
 <template>
   <div id="complete-sentence" class="content-container">
     <span class="question"> השלימו את המשפט: </span>
-    <div v-for="(string, index) in ques.texts" :key="string">
+    <div style="margin: 0.2rem 0;" v-for="(string, index) in ques.texts" :key="string">
       <span class="text"> {{ string }} </span>
       <input class="input" v-if="index < ques.answers.length" :id="`input${index}`" type="text" v-model="userInput[index]">
       <img class="indication" v-if="showAnswers && answerStatus[index] !== 'null'" :src="indicationScr(index)">
@@ -78,18 +78,23 @@
     padding: 10%;
     display: flex;
     flex-direction: column;
-    width: 20rem;
+    width: 40rem;
   }
 
   .question {
-    font-size: 0.9rem;
+    font-size: 2rem;
+    font-weight: 600;
   }
 
   .input {
-    width: 30%;
+    width: 40%;
     height: fit-content;
     resize: none;
-    font-size: 0.7rem;
+    font-size: 1rem;
+    font-family: assistant;
+    border: 5px solid white;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.301);
   }
 
   .text, .input-container {
@@ -97,7 +102,7 @@
   }
 
   .input-container {
-    border: 0.1rem solid black;
+    border: 0.1rem solid rgba(255, 255, 255, 0.633);
     padding: 0.4rem;
     border-radius: 1rem;
     margin-top: 1rem;
