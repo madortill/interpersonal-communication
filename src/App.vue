@@ -21,8 +21,8 @@
   <!-- <img src="@/assets/communication-towers.svg" alt="communication-towers"
     style="position: absolute; bottom: -6rem; width: 70rem; height: 48rem;"> -->
   <div class="communication-towers">
-    <img src="@/assets/communication -towers.svg" class="tower" />
-    <img src="@/assets/communication -towers.svg" style="transform: scaleX(-1)" class="tower" />
+    <img src="@/assets/communication-towers-hadar.svg" class="tower" />
+    <img src="@/assets/communication-towers-hadar.svg" style="transform: scaleX(-1)" class="tower" />
   </div>
   <div class="nav-container">
     <img @click="currScreen--" src="@/assets/arrow-white.svg" alt="->"
